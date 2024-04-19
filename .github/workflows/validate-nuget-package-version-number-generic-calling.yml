@@ -1,0 +1,24 @@
+name: Validate Nuget Version Number
+on:
+  workflow_dispatch:
+
+  # This pull_request trigger and the paths-ignore should mirror the pull_request trigger and paths from the `validate-nuget-package-version-number-*-calling` workflows.
+  # Since the other `validate-nuget-package-version-number-*-calling` workflows specify paths, this generic workflow runs for any other paths and automatically succeeds.
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.md' # Skip if only markdown files have changed
+      - '.github/**' # Skip if only files within the .github directory have changed
+      - 'Documentation/**' # Skip if only files within the Documentation directory have changed
+      - 'Code_Coverage/**' # Skip if only files within the Code_Coverage directory have changed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # This job name must match the job name from `validate-nuget-package-version-number-calling.yml`.
+  validate-nuget-package-version-number:
+    # Call the generic validate nuget package version number workflow
+    uses: westshorehome/automation-workflows/.github/workflows/validate-nuget-package-version-number-generic.yml@v1.4

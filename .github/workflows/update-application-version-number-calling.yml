@@ -1,0 +1,15 @@
+name: Update Application Version Number
+on:
+  workflow_dispatch:
+  # Add the appropriate trigger for your project here (https://westshorehome.atlassian.net/l/cp/f0xFPpPb)
+  # push:
+  #   branches:
+  #     - main
+jobs:
+  update-application-version-number:
+    uses: westshorehome/automation-workflows/.github/workflows/update-application-version-number.yml@v1.4
+    with:
+      project_file_path: '[PATH_TO_CSPROJ_FILE]'
+      info_plist_dir: '[PATH_TO_INFO_PLIST_DIR]'
+      commit_grep_prefix: '[JIRA_TICKET_PREFIX]-'
+    secrets: inherit

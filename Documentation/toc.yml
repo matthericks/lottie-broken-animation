@@ -1,0 +1,7 @@
+- name: YOUR_PROJECT
+  dropdown: true
+  items:
+  - name: YOUR_PROJECTS_CODE
+    href: path/to/your/project/code
+  - name: YOUR_PROJECTS_UNIT_TESTS
+    href: path/to/your/project_unit_tests/code

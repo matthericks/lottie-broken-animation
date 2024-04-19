@@ -1,0 +1,13 @@
+name: Generate Code Documentation
+on:
+  workflow_dispatch:
+  # Add the appropriate trigger for your project here (https://westshorehome.atlassian.net/l/cp/f0xFPpPb)
+  # schedule:
+  #   - cron: '0 9 * * MON' # Every Monday at 3am CST (9am UTC)
+jobs:
+  generate-code-documentation:
+    uses: westshorehome/automation-workflows/.github/workflows/generate-code-documentation.yml@v1.4
+    with:
+      docfx_working_dir: Documentation
+      docfx_site_output_dir: Documentation/_site
+    secrets: inherit

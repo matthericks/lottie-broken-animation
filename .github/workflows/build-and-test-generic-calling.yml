@@ -1,0 +1,26 @@
+# A generic workflow that calls `build-and-test-generic.yml` to automatically succeed for the paths ignored by the `build-and-test-calling` workflow.
+# This prevents the PR status check from hanging on PRs that should ignore the standard build and test workflow.
+# See https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks for more information.
+
+# This workflow name must match the name from `build-and-test-calling.yml`.
+name: Build & Test
+
+on:
+  pull_request:
+    # This trigger and the paths should mirror the trigger and paths-ignore from the `build-and-test-calling` workflow.
+    # Since the paths there are ignored, this generic workflow runs for the ignored paths and automatically succeeds.
+    paths:
+      - '**.md' # Only markdown files have changed
+      - '.github/**' # Only files within the .github directory have changed
+      - 'Documentation/**' # Only files within the Documentation directory have changed
+      - 'Code_Coverage/**' # Only files within the Code_Coverage directory have changed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # This job name must match the job name from `build-and-test-calling.yml`.
+  build-and-test:
+    # Call the generic build and test workflow
+    uses: westshorehome/automation-workflows/.github/workflows/build-and-test-generic.yml@v1.4

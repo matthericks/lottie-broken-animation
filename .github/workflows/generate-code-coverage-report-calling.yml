@@ -1,0 +1,14 @@
+name: Generate Code Coverage Report
+on:
+  workflow_dispatch:
+  # Add the appropriate trigger for your project here (https://westshorehome.atlassian.net/l/cp/f0xFPpPb)
+  # schedule:
+  #   - cron: '0 8 * * MON' # Every Monday at 2am CST (8am UTC)
+jobs:
+  generate-code-coverage-report:
+    uses: westshorehome/automation-workflows/.github/workflows/generate-code-coverage-report.yml@v1.4
+    with:
+      dotcover_config_file_path: Code_Coverage/coverage.xml
+      dotcover_report_file_path: Code_Coverage/AppCoverageReport.xml
+      build_configuration: Release
+    secrets: inherit

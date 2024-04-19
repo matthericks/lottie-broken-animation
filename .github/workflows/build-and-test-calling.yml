@@ -1,0 +1,21 @@
+name: Build & Test
+on:
+  workflow_dispatch:
+  # Add the appropriate trigger for your project here (https://westshorehome.atlassian.net/l/cp/f0xFPpPb)
+  # pull_request:
+  #   paths-ignore:
+  #     - '**.md' # Skip if only markdown files have changed
+  #     - '.github/**' # Skip if only files within the .github directory have changed
+  #     - 'Documentation/**' # Skip if only files within the Documentation directory have changed
+  #     - 'Code_Coverage/**' # Skip if only files within the Code_Coverage directory have changed
+    
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+      
+jobs:
+  build-and-test:
+    uses: westshorehome/automation-workflows/.github/workflows/build-and-test.yml@v1.4
+    secrets: inherit
+    with:
+      build_configuration: 'Release'

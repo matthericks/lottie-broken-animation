@@ -1,0 +1,15 @@
+name: Create & Distribute Release
+on:
+  workflow_dispatch:
+  workflow_run:
+      workflows: [Update Application Version Number]
+      types:
+        - completed
+jobs:
+  create-and-distribute:
+    uses: westshorehome/automation-workflows/.github/workflows/create-and-distribute-release.yml@v1.4
+    with:
+      project_name: '[PROJECT_NAME]'
+      project_file_path: '[PATH_TO_CSPROJ_FILE]'
+      app_center_app: '[APP_CENTER_APP_NAME]'
+    secrets: inherit

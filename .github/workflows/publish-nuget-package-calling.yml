@@ -1,0 +1,14 @@
+name: Package & Publish
+on:
+  workflow_dispatch:
+  # Add the appropriate trigger for your project here (https://westshorehome.atlassian.net/l/cp/f0xFPpPb)
+  # push:
+  #  branches:
+  #    - main
+jobs:
+  package-and-publish:
+    uses: westshorehome/automation-workflows/.github/workflows/publish-nuget-package.yml@v1.4
+    with:
+      package_path: '[PATH_TO_PACKAGE_CSPROJ_FILE]'
+      package_id: '[PACKAGE_ID]'
+    secrets: inherit

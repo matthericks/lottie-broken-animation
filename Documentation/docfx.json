@@ -1,0 +1,70 @@
+{
+	"metadata": [
+		{
+			"src": [
+				{
+					"files": [
+						"PATH_TO_FOLDER_CONTAINING_PROJECT_CSPROJ_FILE/**.csproj"
+					],
+					"exclude": [
+						"**/bin/**",
+						"**/obj/**"
+					],
+					"src": "PATH/TO/SRC/DIR"
+				}
+			],
+			"dest": "OUTPUT/DESTINATION/DIR",
+			"properties": {
+				"TargetFramework": "net6.0"
+			}
+		},
+		{
+			"src": [
+				{
+					"files": [
+						"PATH_TO_FOLDER_CONTAINING_UNIT_TEST_PROJECT_CSPROJ_FILE/**.csproj"
+					],
+					"exclude": [
+						"**/bin/**",
+						"**/obj/**"
+					],
+					"src": "PATH/TO/SRC/DIR"
+				}
+			],
+			"dest": "OUTPUT/DESTINATION/DIR",
+			"properties": {
+				"TargetFramework": "net6.0"
+			}
+		}
+	],
+	"build": {
+		"content": [
+			{
+				"files": [
+					"PATH/TO/FILE_1/RELATIVE/TO/BASE_DEST",
+					"PATH/TO/FILE_2/RELATIVE/TO/BASE_DEST",
+					"PATH/TO/FILE_3/RELATIVE/TO/BASE_DEST"
+				]
+			},
+		    {
+				"files": "PATH/TO/FILE/RELATIVE/TO/SRC", 
+				"src": "PATH/TO/SRC/DIR",
+				"dest": "OUTPUT/DESTINATION/DIR"
+			}
+		],
+		"dest": "_site",
+		"globalMetadata": {
+	        "_appName": "[PROJECT NAME]",
+	        "_appTitle": "[PROJECT DOC SITE TITLE]",
+			"_enableSearch": true,
+			"_gitContribute": false
+		},
+		"template": [
+			"default"
+		],
+		"markdownEngineName": "markdig",
+		"noLangKeyword": false,
+		"keepFileLink": false,
+		"disableGitFeatures": false
+	}
+}
